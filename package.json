@@ -1,0 +1,16 @@
+{
+  "name": "slackbot-helper",
+  "version": "1.0.0",
+  "description": "Slackbot helper",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Max Carlquist",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "request": "^2.88.0",
+    "slackbots": "^1.2.0"
+  }
+}
