@@ -10,7 +10,16 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.7",
+    "passport": "^0.4.0",
+    "passport-cookie": "^1.0.6",
+    "passport-stack-exchange": "^1.0.0",
     "request": "^2.88.0",
+    "session": "^0.1.0",
     "slackbots": "^1.2.0"
   },
   "devDependencies": {
