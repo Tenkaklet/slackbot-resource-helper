@@ -91,7 +91,8 @@ bot.on('message', (data) => {
     getFromStackApi(data.text);
 });
 
-// get request data from Stackoverflow
+
+//get request data from Stackoverflow
 function getFromStackApi(query) {
     axios.get(`http://api.stackexchange.com/2.2/questions?site=stackoverflow&tagged=${query}`)
         .then(function (res) {
@@ -100,12 +101,12 @@ function getFromStackApi(query) {
                 icon_emoji: ':wow:'
             };
             // Send message to ## Channel
-            bot.postMessageToChannel('test', 'res.data', params);
+            bot.postMessageToChannel('test', res.data.items[0], params);
         });
 }
 
-function sendToChannel(answer) {
-
-};
-
-app.listen(5000);
+function Reg(question) {
+    var answer = question.replace(/\s+/g, ';');
+    signale.success(answer);
+    return answer;
+}
