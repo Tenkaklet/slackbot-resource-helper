@@ -38,7 +38,7 @@ app.use(passport.session());
 passport.use(new StackExchangeStrategy({
     clientID: 13422,
     clientSecret: 'SwTJSc)yTEin2*ca2**opQ((',
-    callbackURL: 'https://d2e297e6.ngrok.io/auth/stack-exchange/callback',
+    callbackURL: 'https://stackbot-request.herokuapp.com/auth/stack-exchange/callback',
     stackAppsKey: '34WY6AJL1Dxwr14OeIjmaQ((',
     site: 'stackoverflow'
 },
