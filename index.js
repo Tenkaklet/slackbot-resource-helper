@@ -17,7 +17,7 @@ const cookieSession = require('cookie-session');
 var app = express();
 signale.watch('watching for Slackbot');
 
-app.use(cookieSession({
+app.use(cookieSession({ 
     maxAge: Infinity,
     keys: ["getsomehelpfromslack"]
 }))
