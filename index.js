@@ -26,7 +26,7 @@ app.use(cookieSession({
 
 /**
  * Passport session setup
- */
+ 
 passport.serializeUser(function (user, done) {
     done(null, user);
 });
@@ -42,7 +42,7 @@ app.use(passport.session());
 passport.use(new StackExchangeStrategy({
     clientID: 13422,
     clientSecret: 'SwTJSc)yTEin2*ca2**opQ((',
-    callbackURL: 'https://stackbot-request.herokuapp.com/auth/stack-exchange/callback',
+    callbackURL: 'https://6658ce5d.ngrok.io/auth/stack-exchange/callback',
     stackAppsKey: '34WY6AJL1Dxwr14OeIjmaQ((',
     site: 'stackoverflow'
 },
@@ -66,7 +66,7 @@ app.get('/auth/stack-exchange',
         signale.success('stackoverflow auth successful!');
     });
 
-
+*/
 const bot = new SlackBot({
     token: 'xoxb-416906710166-463631229057-TQclrJ2gD8fU6YeoZO6g7Ds9',
     name: 'resource_helper'
@@ -91,15 +91,9 @@ bot.on('message', (data) => {
     getFromStackApi(data.text);
 });
 
-// Respond to data
-// function sendReturnData(message) {
-//     signale.debug(message);
-//     return message;
-// }
-
 // get request data from Stackoverflow
 function getFromStackApi(query) {
-    axios.get(`http://api.stackexchange.com/2.2/answers?site=stackoverflow&tagged=${query}`)
+    axios.get(`http://api.stackexchange.com/2.2/questions?site=stackoverflow&tagged=${query}`)
         .then(function (res) {
             signale.success('res -> ', res.data);
             const params = {
@@ -114,4 +108,4 @@ function sendToChannel(answer) {
 
 };
 
-app.listen(process.env.PORT || 5000);
+app.listen(5000);

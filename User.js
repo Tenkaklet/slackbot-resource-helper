@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    stackexchangeId: String,
+    profile: String,
 });
 
 const User = mongoose.model('user', userSchema);
