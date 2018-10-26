@@ -63,6 +63,7 @@ app.get('/auth/stack-exchange',
     app.get('/auth/stack-exchange/callback',
     passport.authenticate('stack-exchange'),
     function(req, res) {
+        signale.success(req.user);
         signale.success('stackoverflow auth successful!');
     });
 
