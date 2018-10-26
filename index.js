@@ -1,5 +1,4 @@
 const SlackBot = require('slackbots');
-const request = require('request');
 const signale = require('signale');
 const axios = require('axios');
 var passport = require('passport');
