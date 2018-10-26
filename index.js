@@ -7,6 +7,11 @@ var express = require('express');
 var StackExchangeStrategy = require('passport-stack-exchange');
 var passCookie = require('passport-cookie');
 var User = require('./User');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://Tenkaklet:3nku7sat@ds143293.mlab.com:43293/slackbot', function () {
+    signale.info('Yeah Db connected');
+});
 
 const cookieSession = require('cookie-session');
 
