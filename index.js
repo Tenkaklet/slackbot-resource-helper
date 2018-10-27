@@ -26,7 +26,7 @@ app.use(cookieSession({
 
 /**
  * Passport session setup
- 
+ */
 passport.serializeUser(function (user, done) {
     done(null, user);
 });
@@ -35,14 +35,12 @@ passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 passport.use(new StackExchangeStrategy({
     clientID: 13422,
     clientSecret: 'SwTJSc)yTEin2*ca2**opQ((',
-    callbackURL: 'https://6658ce5d.ngrok.io/auth/stack-exchange/callback',
+    callbackURL: 'https://dbdc8dcb.ngrok.io/auth/stack-exchange/callback',
     stackAppsKey: '34WY6AJL1Dxwr14OeIjmaQ((',
     site: 'stackoverflow'
 },
@@ -55,6 +53,10 @@ passport.use(new StackExchangeStrategy({
     }
 ));
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Express routing
 app.get('/auth/stack-exchange',
     passport.authenticate('stack-exchange'));
@@ -62,11 +64,10 @@ app.get('/auth/stack-exchange',
     app.get('/auth/stack-exchange/callback',
     passport.authenticate('stack-exchange'),
     function(req, res) {
-        signale.success(req.user);
-        signale.success('stackoverflow auth successful!');
+        res.send('stack exchange ok');
     });
 
-*/
+
 const bot = new SlackBot({
     token: 'xoxb-416906710166-463631229057-TQclrJ2gD8fU6YeoZO6g7Ds9',
     name: 'resource_helper'
@@ -110,3 +111,5 @@ function Reg(question) {
     signale.success(answer);
     return answer;
 }
+
+app.listen(process.env.PORT || 5000);
