@@ -17,7 +17,7 @@ const cookieSession = require('cookie-session');
 var app = express();
 signale.watch('watching for Slackbot');
 
-app.use(cookieSession({ 
+app.use(cookieSession({
     maxAge: Infinity,
     keys: ["getsomehelpfromslack"]
 }))
@@ -40,7 +40,7 @@ passport.deserializeUser(function (obj, done) {
 passport.use(new StackExchangeStrategy({
     clientID: 13422,
     clientSecret: 'SwTJSc)yTEin2*ca2**opQ((',
-    callbackURL: 'https://dbdc8dcb.ngrok.io/auth/stack-exchange/callback',
+    callbackURL: 'http://localhost:5000/auth/stack-exchange/callback',
     stackAppsKey: '34WY6AJL1Dxwr14OeIjmaQ((',
     site: 'stackoverflow'
 },
@@ -57,13 +57,17 @@ passport.use(new StackExchangeStrategy({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', function (req, res) {
+    res.send('ok site');
+});
+
 // Express routing
 app.get('/auth/stack-exchange',
     passport.authenticate('stack-exchange'));
 
-    app.get('/auth/stack-exchange/callback',
+app.get('/auth/stack-exchange/callback',
     passport.authenticate('stack-exchange'),
-    function(req, res) {
+    function (req, res) {
         res.send('stack exchange ok');
     });
 
@@ -97,12 +101,12 @@ bot.on('message', (data) => {
 function getFromStackApi(query) {
     axios.get(`http://api.stackexchange.com/2.2/questions?site=stackoverflow&tagged=${query}`)
         .then(function (res) {
-            signale.success('res -> ', res.data);
+            mapThrough(res.data);
             const params = {
                 icon_emoji: ':wow:'
             };
             // Send message to ## Channel
-            bot.postMessageToChannel('test', res.data.items[0], params);
+            bot.postMessageToChannel('test', mapThrough, params);
         });
 }
 
@@ -110,6 +114,16 @@ function Reg(question) {
     var answer = question.replace(/\s+/g, ';');
     signale.success(answer);
     return answer;
+}
+
+function mapThrough(res) {
+    res.items.map(function (item, index) {
+        if(item.link) {
+            console.log(item.link);
+            return item.link;
+        }
+    });
+    
 }
 
 app.listen(process.env.PORT || 5000);
